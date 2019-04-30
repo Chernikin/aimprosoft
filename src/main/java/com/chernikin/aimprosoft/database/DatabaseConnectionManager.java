@@ -11,7 +11,10 @@ public class DatabaseConnectionManager {
     private static final String MYSQL_DATABASE_PASSWORD = "Root";
 
     public static Connection getConnection() throws SQLException {
-       return DriverManager.getConnection(MYSQL_DATABASE_URL, MYSQL_DATABASE_USERNAME, MYSQL_DATABASE_PASSWORD);
+        final Connection connection = DriverManager.getConnection(MYSQL_DATABASE_URL, MYSQL_DATABASE_USERNAME, MYSQL_DATABASE_PASSWORD);
+        connection.setAutoCommit(false);
+        return connection;
+
     }
 
     public static void closeConnection(Connection connection){
