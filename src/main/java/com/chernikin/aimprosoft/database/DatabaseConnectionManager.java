@@ -17,18 +17,18 @@ public class DatabaseConnectionManager {
 
     }
 
-    public static void closeConnection(Connection connection){
-       if (connection != null){
-           try {
-               connection.close();
-           } catch (SQLException e) {
-               e.printStackTrace();
-           }
-       }
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    public static void rollback(Connection connection){
-        if(connection != null){
+    public static void rollback(Connection connection) {
+        if (connection != null) {
             try {
                 connection.rollback();
             } catch (SQLException e) {
@@ -37,8 +37,8 @@ public class DatabaseConnectionManager {
         }
     }
 
-    public static void commit(Connection connection){
-        if(connection != null){
+    public static void commit(Connection connection) {
+        if (connection != null) {
             try {
                 connection.commit();
             } catch (SQLException e) {

@@ -3,6 +3,7 @@ package com.chernikin.aimprosoft.service;
 import com.chernikin.aimprosoft.database.DatabaseConnectionManager;
 import com.chernikin.aimprosoft.database.dao.DepartmentDao;
 import com.chernikin.aimprosoft.domain.Department;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,20 +11,24 @@ import java.util.List;
 
 public class DepartmentService {
 
-    private DepartmentDao departmentDao = new DepartmentDao();
+    private static Logger logger = Logger.getLogger(DepartmentService.class);
 
-    public long createDepartment(Department department){
+    private final DepartmentDao departmentDao = new DepartmentDao();
+
+    public long createDepartment(Department department) {
         Connection connection = null;
         try {
             connection = DatabaseConnectionManager.getConnection();
             final long departmentId = departmentDao.create(connection, department);
-            connection.commit();
+            DatabaseConnectionManager.commit(connection);
             return departmentId;
         } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+            logger.error("Can`t create a new department", e);
+            DatabaseConnectionManager.rollback(connection);
+        } finally {
             DatabaseConnectionManager.closeConnection(connection);
-        }return -1;
+        }
+        return -1;
     }
 
     public Department getDepartmentById(long id) {
@@ -32,49 +37,52 @@ public class DepartmentService {
             connection = DatabaseConnectionManager.getConnection();
             return departmentDao.getById(connection, id);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can`t get department by id: " + id, e);
         } finally {
             DatabaseConnectionManager.closeConnection(connection);
         }
         return null;
     }
 
-    public List<Department> getAllDepartment(){
+    public List<Department> getAllDepartment() {
         Connection connection = null;
         try {
             connection = DatabaseConnectionManager.getConnection();
             return departmentDao.getAll(connection);
         } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+            logger.error("Can`t get all department", e);
+        } finally {
             DatabaseConnectionManager.closeConnection(connection);
-        }return null;
+        }
+        return null;
     }
 
-    public Department updateDepartment(Department department){
+    public Department updateDepartment(Department department) {
         Connection connection = null;
         try {
             connection = DatabaseConnectionManager.getConnection();
             final Department updatedDepartment = departmentDao.update(connection, department);
-            connection.commit();
+            DatabaseConnectionManager.commit(connection);
             return updatedDepartment;
         } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+            logger.error("Can`t update department", e);
+            DatabaseConnectionManager.rollback(connection);
+        } finally {
             DatabaseConnectionManager.closeConnection(connection);
         }
         return department;
     }
 
-    public void deleteDepartmentById(long id){
+    public void deleteDepartmentById(long id) {
         Connection connection = null;
         try {
             connection = DatabaseConnectionManager.getConnection();
             departmentDao.deleteById(connection, id);
-            connection.commit();
+            DatabaseConnectionManager.commit(connection);
         } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+            logger.error("Can`t delete department by id: " + id, e);
+            DatabaseConnectionManager.rollback(connection);
+        } finally {
             DatabaseConnectionManager.closeConnection(connection);
         }
     }

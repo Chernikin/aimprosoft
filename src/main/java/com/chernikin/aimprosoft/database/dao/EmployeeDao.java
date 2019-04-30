@@ -16,7 +16,7 @@ public class EmployeeDao implements GenericDao<Employee> {
     @Override
     public long create(Connection connection, Employee employee) {
         String sql = "INSERT INTO employees (first_name, last_name, patronymic, email, phone_number, employment_date, dismissal_date, department_id) VALUES (?,?,?,?,?,?,?,?)";
-       long idDepartment = employee.getDepartment().getId();
+        long idDepartment = employee.getDepartment().getId();
         try {
             final PreparedStatement preparedStatement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, employee.getFirstName());
@@ -55,14 +55,14 @@ public class EmployeeDao implements GenericDao<Employee> {
     }
 
 
-    public List<Employee> getAllFromDepartment(Connection connection, long department_id){
+    public List<Employee> getAllFromDepartment(Connection connection, long department_id) {
         String sql = "SELECT * FROM employees join departments on employees.department_id = departments.id WHERE department_id = ?";
         try {
             final PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1, department_id);
             final ResultSet resultSet = preparedStatement.executeQuery();
             final List<Employee> employees = new ArrayList<>();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 employees.add(extractEmployeeFromResultSet(resultSet));
             }
             return employees;

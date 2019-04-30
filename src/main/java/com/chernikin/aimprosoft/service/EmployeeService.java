@@ -3,6 +3,7 @@ package com.chernikin.aimprosoft.service;
 import com.chernikin.aimprosoft.database.DatabaseConnectionManager;
 import com.chernikin.aimprosoft.database.dao.EmployeeDao;
 import com.chernikin.aimprosoft.domain.Employee;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,17 +12,20 @@ import java.util.List;
 
 public class EmployeeService {
 
-    final EmployeeDao employeeDao = new EmployeeDao();
+    private static Logger logger = Logger.getLogger(EmployeeService.class);
+
+    private final EmployeeDao employeeDao = new EmployeeDao();
 
     public long createEmployee(Employee employee) {
         Connection connection = null;
         try {
             connection = DatabaseConnectionManager.getConnection();
             final long employeeId = employeeDao.create(connection, employee);
-            connection.commit();
+            DatabaseConnectionManager.commit(connection);
             return employeeId;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can`t create a new employee", e);
+            DatabaseConnectionManager.rollback(connection);
         } finally {
             DatabaseConnectionManager.closeConnection(connection);
         }
@@ -34,7 +38,7 @@ public class EmployeeService {
             connection = DatabaseConnectionManager.getConnection();
             return employeeDao.getById(connection, id);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can`t get employee by id: " + id, e);
         } finally {
             DatabaseConnectionManager.closeConnection(connection);
         }
@@ -47,7 +51,7 @@ public class EmployeeService {
             connection = DatabaseConnectionManager.getConnection();
             return employeeDao.getAll(connection);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can`t get all employee", e);
         } finally {
             DatabaseConnectionManager.closeConnection(connection);
         }
@@ -60,7 +64,7 @@ public class EmployeeService {
             connection = DatabaseConnectionManager.getConnection();
             return employeeDao.getAllFromDepartment(connection, departmentId);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can`t get all employee from department with id: " + departmentId, e);
         } finally {
             DatabaseConnectionManager.closeConnection(connection);
         }
@@ -72,10 +76,11 @@ public class EmployeeService {
         try {
             connection = DatabaseConnectionManager.getConnection();
             final Employee updatedEmployee = employeeDao.update(connection, employee);
-            connection.commit();
+            DatabaseConnectionManager.commit(connection);
             return updatedEmployee;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can`t update employee", e);
+            DatabaseConnectionManager.rollback(connection);
         } finally {
             DatabaseConnectionManager.closeConnection(connection);
         }
@@ -87,9 +92,10 @@ public class EmployeeService {
         try {
             connection = DatabaseConnectionManager.getConnection();
             employeeDao.deleteById(connection, id);
-            connection.commit();
+            DatabaseConnectionManager.commit(connection);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Can`t delete employee", e);
+            DatabaseConnectionManager.rollback(connection);
         } finally {
             DatabaseConnectionManager.closeConnection(connection);
         }
