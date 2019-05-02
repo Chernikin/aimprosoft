@@ -7,7 +7,7 @@
     <groupId>com.chernikin.aimprosoft</groupId>
     <artifactId>Aimprosoft</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <packaging>war</packaging>
     <name>Aimprosoft</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>

@@ -44,7 +44,7 @@ public class DepartmentService {
         return null;
     }
 
-    public List<Department> getAllDepartment() {
+    public List<Department> getAllDepartments() {
         Connection connection = null;
         try {
             connection = DatabaseConnectionManager.getConnection();
