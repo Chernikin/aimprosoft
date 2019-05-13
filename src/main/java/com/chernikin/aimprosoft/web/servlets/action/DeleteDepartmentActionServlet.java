@@ -19,6 +19,6 @@ public class DeleteDepartmentActionServlet extends HttpServlet {
         final long departmentId = Long.parseLong(req.getParameter("departmentId"));
         departmentService.deleteDepartmentById(departmentId);
         req.setAttribute("successMessage", "Department with id: " + departmentId + " delete!");
-        req.getRequestDispatcher("manage-departments-page").forward(req, resp);
+        resp.sendRedirect("manage-departments-page");
     }
 }

@@ -19,12 +19,12 @@ public class UpdateDepartmentActionServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final long departmentId = Long.parseLong(req.getParameter("id"));
+        final long departmentId = Long.parseLong(req.getParameter("departmentId"));
         final Department departmentById = departmentService.getDepartmentById(departmentId);
         departmentById.setDepartmentName(req.getParameter("departmentName"));
         departmentById.setComments(req.getParameter("comments"));
         departmentService.updateDepartment(departmentById);
         req.setAttribute("successMessage", "Department with id: " + departmentId + " update!");
-        req.getRequestDispatcher("manage-departments-page").forward(req, resp);
+        resp.sendRedirect("manage-departments-page");
     }
 }
