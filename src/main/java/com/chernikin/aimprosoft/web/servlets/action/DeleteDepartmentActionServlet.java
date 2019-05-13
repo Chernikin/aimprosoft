@@ -16,7 +16,7 @@ public class DeleteDepartmentActionServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final long departmentId = Long.parseLong(req.getParameter("id"));
+        final long departmentId = Long.parseLong(req.getParameter("departmentId"));
         departmentService.deleteDepartmentById(departmentId);
         req.setAttribute("successMessage", "Department with id: " + departmentId + " delete!");
         req.getRequestDispatcher("manage-departments-page").forward(req, resp);

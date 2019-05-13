@@ -1,7 +1,6 @@
 package com.chernikin.aimprosoft.web.servlets.page;
 
 import com.chernikin.aimprosoft.domain.Employee;
-import com.chernikin.aimprosoft.service.DepartmentService;
 import com.chernikin.aimprosoft.service.EmployeeService;
 
 import javax.servlet.ServletException;
@@ -19,10 +18,10 @@ public class ManageEmployeesPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final long departmentId = Long.parseLong(req.getParameter("id"));
+        final long departmentId = Long.parseLong(req.getParameter("departmentId"));
         final List<Employee> allEmployeesFromDepartment = employeeService.getAllFromDepartment(departmentId);
         req.setAttribute("allEmployeesFromDepartment", allEmployeesFromDepartment);
-        req.setAttribute("department", departmentId);
+        req.setAttribute("departmentId", departmentId);
         req.getRequestDispatcher("manage-employees-page.jsp").forward(req, resp);
     }
 }

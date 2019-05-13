@@ -15,7 +15,7 @@ public class EmployeeDao implements GenericDao<Employee> {
 
     @Override
     public long create(Connection connection, Employee employee) {
-        String sql = "INSERT INTO employees (first_name, last_name, patronymic, email, phone_number, employment_date, dismissal_date, department_id) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO employees (first_name, last_name, patronymic, email, age, phone_number, employment_date, department_id) VALUES (?,?,?,?,?,?,?,?)";
         long idDepartment = employee.getDepartment().getId();
         try {
             final PreparedStatement preparedStatement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -23,9 +23,11 @@ public class EmployeeDao implements GenericDao<Employee> {
             preparedStatement.setString(2, employee.getLastName());
             preparedStatement.setString(3, employee.getPatronymic());
             preparedStatement.setString(4, employee.getEmail());
-            preparedStatement.setString(5, employee.getPhoneNumber());
-            preparedStatement.setDate(6, (Date) employee.getEmploymentDate());
-            preparedStatement.setDate(7, (Date) employee.getDismissalDate());
+            preparedStatement.setInt(5, employee.getAge());
+            preparedStatement.setString(6, employee.getPhoneNumber());
+            preparedStatement.setDate(7, new Date(employee.getEmploymentDate().getTime()));
+           /* preparedStatement.setDate(6, java.sql.Date.valueOf(employee.getEmploymentDate()));
+            preparedStatement.setDate(7, java.sql.Date.valueOf(employee.getDismissalDate()));*/
             preparedStatement.setLong(8, idDepartment);
             preparedStatement.executeUpdate();
             final ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -91,8 +93,8 @@ public class EmployeeDao implements GenericDao<Employee> {
 
     @Override
     public Employee update(Connection connection, Employee employee) {
-        String sql = "UPDATE employees SET first_name = ?, last_name = ?, patronymic = ?, email = ?, phone_number = ?, employment_date = ?," +
-                " dismissal_date = ?, department_id = ? WHERE id = ?";
+        String sql = "UPDATE employees SET first_name = ?, last_name = ?, patronymic = ?, email = ?, age = ?, phone_number = ?, employment_date = ?," +
+                " department_id = ? WHERE id = ?";
         final long idDepartment = employee.getDepartment().getId();
         try {
             final PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -100,9 +102,11 @@ public class EmployeeDao implements GenericDao<Employee> {
             preparedStatement.setString(2, employee.getLastName());
             preparedStatement.setString(3, employee.getPatronymic());
             preparedStatement.setString(4, employee.getEmail());
-            preparedStatement.setString(5, employee.getPhoneNumber());
-            preparedStatement.setDate(6, (Date) employee.getEmploymentDate());
-            preparedStatement.setDate(7, (Date) employee.getDismissalDate());
+            preparedStatement.setInt(5, employee.getAge());
+            preparedStatement.setString(6, employee.getPhoneNumber());
+            preparedStatement.setDate(7, new Date(employee.getEmploymentDate().getTime()));
+          /*  preparedStatement.setDate(6, java.sql.Date.valueOf(employee.getEmploymentDate()));
+            preparedStatement.setDate(7, java.sql.Date.valueOf(employee.getDismissalDate()));*/
             preparedStatement.setLong(8, idDepartment);
             preparedStatement.setLong(9, employee.getId());
             preparedStatement.executeUpdate();
@@ -126,9 +130,11 @@ public class EmployeeDao implements GenericDao<Employee> {
         employee.setLastName(resultSet.getString("last_name"));
         employee.setPatronymic(resultSet.getString("patronymic"));
         employee.setEmail(resultSet.getString("email"));
+        employee.setAge(resultSet.getInt("age"));
         employee.setPhoneNumber(resultSet.getString("phone_number"));
         employee.setEmploymentDate(resultSet.getDate("employment_date"));
-        employee.setDismissalDate(resultSet.getDate("dismissal_date"));
+       /* employee.setEmploymentDate(new java.sql.Date(resultSet.getDate("employment_date").getTime()).toLocalDate());
+        employee.setDismissalDate(new java.sql.Date(resultSet.getDate("dismissal_date").getTime()).toLocalDate());*/
         final Department department = new Department();
         department.setId(resultSet.getLong("department_id"));
         department.setDepartmentName(resultSet.getString("department_name"));

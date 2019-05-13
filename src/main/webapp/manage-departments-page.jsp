@@ -41,19 +41,19 @@
                 <td>
                     <form action="link-to-update-department" method="post">
                         <button type="submit">update department</button>
-                        <input type="hidden" value="${department.id}" name="id">
+                        <input type="hidden" value="${department.id}" name="departmentId">
                     </form>
                 </td>
                 <td>
                     <form action="delete-department" method="get">
                         <button type="submit">delete department</button>
-                        <input type="hidden" value="${department.id}" name="id">
+                        <input type="hidden" value="${department.id}" name="departmentId">
                     </form>
                 </td>
                 <td>
                     <form action="manage-employees-page" method="get">
                         <button type="submit">list employees</button>
-                        <input type="hidden" value="${department.id}" name="id">
+                        <input type="hidden" value="${department.id}" name="departmentId">
                     </form>
                 </td>
             </tr>

@@ -16,10 +16,11 @@ public class DeleteEmployeeActionServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final long employeeId = Long.parseLong(req.getParameter("id"));
+        final long employeeId = Long.parseLong(req.getParameter("employeeId"));
+        final long departmentId = Long.parseLong(req.getParameter("departmentId"));
         employeeService.deleteEmployee(employeeId);
         req.setAttribute("successMessage", "Employee with id: " + employeeId + " delete!");
-        req.getRequestDispatcher("manage-employees-page").forward(req, resp);
+        resp.sendRedirect("manage-employees-page?departmentId=" + departmentId);
 
     }
 }

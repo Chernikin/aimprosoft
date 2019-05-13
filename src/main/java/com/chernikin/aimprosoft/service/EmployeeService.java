@@ -2,7 +2,6 @@ package com.chernikin.aimprosoft.service;
 
 import com.chernikin.aimprosoft.database.DatabaseConnectionManager;
 import com.chernikin.aimprosoft.database.dao.EmployeeDao;
-import com.chernikin.aimprosoft.domain.Department;
 import com.chernikin.aimprosoft.domain.Employee;
 import org.apache.log4j.Logger;
 

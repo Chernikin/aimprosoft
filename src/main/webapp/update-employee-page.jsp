@@ -32,16 +32,16 @@
             <td><input type="text" name="email" value="${employee.email}"></td>
         </tr>
         <tr>
+            <td>Age</td>
+            <td><input type="text" name="age" value="${employee.age}"></td>
+        </tr>
+        <tr>
             <td>Phone number</td>
             <td><input type="text" name="phoneNumber" value="${employee.phoneNumber}"></td>
         </tr>
         <tr>
             <td>Employment date</td>
-            <td><input type="text" name="employmentDate" value="${employee.employmentDate}"></td>
-        </tr>
-        <tr>
-            <td>Dismissal date</td>
-            <td><input type="text" name="dismissalDate" value="${employee.dismissalDate}"></td>
+            <td><input type="date" name="employmentDate" value="${employee.employmentDate}"></td>
         </tr>
         <tr>
             <td>Department id</td>

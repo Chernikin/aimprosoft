@@ -1,5 +1,4 @@
 com\chernikin\aimprosoft\database\dao\DepartmentDao.class
-com\chernikin\aimprosoft\web\servlets\LinkToUpdateEmloyeeServlet.class
 com\chernikin\aimprosoft\domain\Department.class
 com\chernikin\aimprosoft\web\servlets\page\ManageEmployeesPageServlet.class
 com\chernikin\aimprosoft\database\JdbcTemplate.class
@@ -17,4 +16,6 @@ com\chernikin\aimprosoft\web\servlets\action\CreateEmployeeActionServlet.class
 com\chernikin\aimprosoft\web\servlets\LinkToUpdateDepartmentServlet.class
 com\chernikin\aimprosoft\web\servlets\action\UpdateDepartmentActionServlet.class
 com\chernikin\aimprosoft\web\servlets\action\DeleteEmployeeActionServlet.class
+com\chernikin\aimprosoft\web\servlets\LinkToUpdateEmployeeServlet.class
 com\chernikin\aimprosoft\database\dao\GenericDao.class
+com\chernikin\aimprosoft\web\servlets\page\CreateEmployeePageServlet.class

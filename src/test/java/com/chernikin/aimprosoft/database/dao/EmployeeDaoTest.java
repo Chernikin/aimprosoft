@@ -13,7 +13,7 @@ public class EmployeeDaoTest {
 
     @Ignore
     @Test
-    public void returnEmployeeIdIfEmployeeSuccessfullySavedInDatabase(){
+    public void returnEmployeeIdIfEmployeeSuccessfullySavedInDatabase() {
         final EmployeeService employeeService = new EmployeeService();
         final Employee employee = new Employee();
         final DepartmentService departmentService = new DepartmentService();
@@ -30,7 +30,7 @@ public class EmployeeDaoTest {
 
     @Ignore
     @Test
-    public void returnEmployeeIfEmployeeUpdate(){
+    public void returnEmployeeIfEmployeeUpdate() {
         final EmployeeService employeeService = new EmployeeService();
         final Employee employeeById = employeeService.getEmployeeById(6);
         employeeById.setFirstName("Test Update");
@@ -40,8 +40,9 @@ public class EmployeeDaoTest {
 
     @Ignore
     @Test
-    public void returnNullIfEmployeeDataDelete(){
+    public void returnNullIfEmployeeDataDelete() {
         final EmployeeService employeeService = new EmployeeService();
         employeeService.deleteEmployee(6);
     }
+
 }

@@ -9,22 +9,22 @@ public class Employee {
     private String lastName;
     private String patronymic;
     private String email;
+    private int age;
     private String phoneNumber;
     private Date employmentDate;
-    private Date dismissalDate;
     private Department department;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String patronymic, String email, String phoneNumber, Date employmentDate, Date dismissalDate, Department department) {
+    public Employee(String firstName, String lastName, String patronymic, String email, int age, String phoneNumber, Date employmentDate, Department department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.patronymic = patronymic;
         this.email = email;
+        this.age = age;
         this.phoneNumber = phoneNumber;
         this.employmentDate = employmentDate;
-        this.dismissalDate = dismissalDate;
         this.department = department;
     }
 
@@ -68,6 +68,14 @@ public class Employee {
         this.email = email;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -82,14 +90,6 @@ public class Employee {
 
     public void setEmploymentDate(Date employmentDate) {
         this.employmentDate = employmentDate;
-    }
-
-    public Date getDismissalDate() {
-        return dismissalDate;
-    }
-
-    public void setDismissalDate(Date dismissalDate) {
-        this.dismissalDate = dismissalDate;
     }
 
     public Department getDepartment() {
@@ -108,10 +108,11 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", patronymic='" + patronymic + '\'' +
                 ", email='" + email + '\'' +
+                ", age=" + age +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", employmentDate=" + employmentDate +
-                ", dismissalDate=" + dismissalDate +
                 ", department=" + department +
                 '}';
     }
+
 }

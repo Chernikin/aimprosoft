@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Manage employes page</title>
+    <title>Manage employees page</title>
 </head>
 <body>
 <h3>${successMessage}</h3>
@@ -20,7 +20,7 @@
         </tr>
         <tr>
             <td colspan="11">
-                <button><a href="create-employee-page"><b>Create Employee</b></a></button>
+                <button><a href="create-employee-page?departmentId=${departmentId}"><b>Create Employee</b></a></button>
             </td>
         </tr>
         <tr>
@@ -29,9 +29,9 @@
             <td><b>Last name</b></td>
             <td><b>Patronymic</b></td>
             <td><b>Email</b></td>
+            <td><b>Age</b></td>
             <td><b>Phone number</b></td>
             <td><b>Employment date</b></td>
-            <td><b>Dismissal date</b></td>
             <td><b>Department</b></td>
             <td><b>Update</b></td>
             <td><b>Delete</b></td>
@@ -43,20 +43,22 @@
                 <td>${employee.lastName}</td>
                 <td>${employee.patronymic}</td>
                 <td>${employee.email}</td>
+                <td>${employee.age}</td>
                 <td>${employee.phoneNumber}</td>
                 <td>${employee.employmentDate}</td>
-                <td>${employee.dismissalDate}</td>
-                <td>${department.id}</td>
+                <td>${departmentId}</td>
                 <td>
                     <form action="link-to-update-employee" method="post">
                         <button type="submit">update employee</button>
-                        <input type="hidden" value="${employee.id}" name="id">
+                        <input type="hidden" value="${employee.id}" name="employeeId">
+                        <input type="hidden" value="${departmentId}" name="departmentId">
                     </form>
                 </td>
                 <td>
-                    <form action="delete-employee" method="post">
+                    <form action="delete-employee" method="get">
                         <button type="submit">delete employee</button>
-                        <input type="hidden" value="${employee.id}" name="id">
+                        <input type="hidden" value="${employee.id}" name="employeeId">
+                        <input type="hidden" value="${departmentId}" name="departmentId">
                     </form>
                 </td>
             </tr>

@@ -19,7 +19,7 @@ public class LinkToUpdateDepartmentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final long departmentId = Long.parseLong(req.getParameter("id"));
+        final long departmentId = Long.parseLong(req.getParameter("departmentId"));
         final Department departmentById = departmentService.getDepartmentById(departmentId);
         req.setAttribute("department", departmentById);
         req.getRequestDispatcher("update-department-page.jsp").forward(req, resp);

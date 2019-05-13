@@ -21,7 +21,7 @@ public class LinkToUpdateEmployeeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final long employeeId = Long.parseLong(req.getParameter("id"));
+        final long employeeId = Long.parseLong(req.getParameter("employeeId"));
         final Employee employeeById = employeeService.getEmployeeById(employeeId);
         req.setAttribute("employee", employeeById);
         final List<Department> allDepartments = departmentService.getAllDepartments();

@@ -31,30 +31,28 @@
             <td><input type="text" name="email"></td>
         </tr>
         <tr>
+            <td>Age</td>
+            <td><input type="text" name="age"></td>
+        </tr>
+        <tr>
             <td>Phone number</td>
             <td><input type="text" name="phoneNumber"></td>
         </tr>
         <tr>
             <td>Employment date</td>
-            <td><input type="date" name="employmentDate"></td>
-        </tr>
-        <tr>
-            <td>Dismissal date</td>
-            <td><input type="date" name="dismissalDate"></td>
+            <td><input type="date"  name="employmentDate"></td>
         </tr>
         <tr>
             <td>Department id</td>
             <td>
-                <select name="departmentId">
-                    <c:forEach items="${allDepartments}" var="department">
-                        <option value="${department.id}" selected>${department.departmentName}</option>
-                    </c:forEach>
-                </select>
+                <input disabled type="text" name="departmentId" value="${departmentId}">
             </td>
         </tr>
         <tr>
             <td>
-                <input type="submit" name="submit" value="Create">
+                <%--<input type="submit" name="submit" value="Create">--%>
+                <button type="submit">Create</button>
+                <input type="hidden" value="${departmentId}" name="departmentId">
             </td>
         </tr>
     </table>

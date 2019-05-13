@@ -1,0 +1,13 @@
+0:0:0:0:0:0:0:1 - - [06/May/2019:00:00:54 +0300] "GET /Aimprosoft HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [06/May/2019:00:00:54 +0300] "GET /Aimprosoft/ HTTP/1.1" 200 3317 http-bio-8080-exec-3 637
+0:0:0:0:0:0:0:1 - - [06/May/2019:00:00:56 +0300] "GET /Aimprosoft/manage-employees-page?departmentId=1 HTTP/1.1" 200 5264 http-bio-8080-exec-4 32
+0:0:0:0:0:0:0:1 - - [06/May/2019:00:00:59 +0300] "POST /Aimprosoft/link-to-update-employee HTTP/1.1" 200 1810 http-bio-8080-exec-5 691
+0:0:0:0:0:0:0:1 - - [06/May/2019:00:01:21 +0300] "GET /Aimprosoft/update-employee-action?firstName=Alex2&lastName=Pelehanov2&patronymic=Alexandrovich2&email=pelehanov1%40gmail.com&age=55&phoneNumber=%2B380679898655&employmentDate=2019-04-03&departmentId=2&id=16 HTTP/1.1" 200 - http-bio-8080-exec-6 3
+0:0:0:0:0:0:0:1 - - [06/May/2019:00:02:58 +0300] "GET /Aimprosoft HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [06/May/2019:00:02:59 +0300] "GET /Aimprosoft/ HTTP/1.1" 200 3317 http-bio-8080-exec-3 763
+0:0:0:0:0:0:0:1 - - [06/May/2019:00:03:01 +0300] "GET /Aimprosoft/manage-employees-page?departmentId=2 HTTP/1.1" 200 3117 http-bio-8080-exec-4 27
+0:0:0:0:0:0:0:1 - - [06/May/2019:00:03:11 +0300] "GET /Aimprosoft/manage-employees-page?departmentId=2 HTTP/1.1" 200 3117 http-bio-8080-exec-5 20
+0:0:0:0:0:0:0:1 - - [06/May/2019:00:03:14 +0300] "GET /Aimprosoft/manage-employees-page?departmentId=1 HTTP/1.1" 200 5264 http-bio-8080-exec-7 18
+0:0:0:0:0:0:0:1 - - [06/May/2019:00:03:17 +0300] "GET /Aimprosoft/delete-employee?id=16&departmentId=1 HTTP/1.1" 302 - http-bio-8080-exec-8 63
+0:0:0:0:0:0:0:1 - - [06/May/2019:00:03:17 +0300] "GET /Aimprosoft/manage-employees-page?departmentId=1 HTTP/1.1" 200 4174 http-bio-8080-exec-9 13
+0:0:0:0:0:0:0:1 - - [06/May/2019:00:03:21 +0300] "GET /Aimprosoft/manage-employees-page?departmentId=1 HTTP/1.1" 200 4174 http-bio-8080-exec-10 16
