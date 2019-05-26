@@ -1,5 +1,6 @@
 package com.chernikin.aimprosoft.database.dao;
 
+import com.chernikin.aimprosoft.database.DatabaseException;
 import com.chernikin.aimprosoft.database.JdbcTemplate;
 import com.chernikin.aimprosoft.domain.Department;
 
@@ -28,7 +29,8 @@ public class DepartmentDao implements GenericDao<Department> {
                 return resultSet.getLong(1);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            // logger.error("", e);
+            throw new DatabaseException(e);
         }
         return -1;
     }
@@ -44,6 +46,7 @@ public class DepartmentDao implements GenericDao<Department> {
                 return extractDepartmentFromResultSet(resultSet);
             }
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
         return null;

@@ -1,8 +1,10 @@
 package com.chernikin.aimprosoft.service;
 
 import com.chernikin.aimprosoft.database.DatabaseConnectionManager;
+import com.chernikin.aimprosoft.database.DatabaseException;
 import com.chernikin.aimprosoft.database.dao.DepartmentDao;
 import com.chernikin.aimprosoft.domain.Department;
+import com.chernikin.aimprosoft.service.exception.ServiceException;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -15,20 +17,18 @@ public class DepartmentService {
 
     private final DepartmentDao departmentDao = new DepartmentDao();
 
-    public long createDepartment(Department department) {
+    public void createDepartment(Department department) {
         Connection connection = null;
         try {
             connection = DatabaseConnectionManager.getConnection();
-            final long departmentId = departmentDao.create(connection, department);
+            departmentDao.create(connection, department);
             DatabaseConnectionManager.commit(connection);
-            return departmentId;
-        } catch (SQLException e) {
-            logger.error("Can`t create a new department", e);
+        } catch (DatabaseException e) {
             DatabaseConnectionManager.rollback(connection);
+            throw new ServiceException("Can't create a new department");
         } finally {
             DatabaseConnectionManager.closeConnection(connection);
         }
-        return -1;
     }
 
     public Department getDepartmentById(long id) {

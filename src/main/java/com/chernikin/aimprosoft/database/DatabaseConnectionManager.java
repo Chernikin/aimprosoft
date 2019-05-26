@@ -10,11 +10,15 @@ public class DatabaseConnectionManager {
     private static final String MYSQL_DATABASE_USERNAME = "root";
     private static final String MYSQL_DATABASE_PASSWORD = "Root";
 
-    public static Connection getConnection() throws SQLException {
-        final Connection connection = DriverManager.getConnection(MYSQL_DATABASE_URL, MYSQL_DATABASE_USERNAME, MYSQL_DATABASE_PASSWORD);
-        connection.setAutoCommit(false);
-        return connection;
-
+    public static Connection getConnection() {
+        try {
+            final Connection connection = DriverManager.getConnection(MYSQL_DATABASE_URL, MYSQL_DATABASE_USERNAME, MYSQL_DATABASE_PASSWORD);
+            connection.setAutoCommit(false);
+            return connection;
+        } catch (SQLException e) {
+            // logger.error("Can't establish a new connection to the database")
+            throw new DatabaseConnectionException("The database is unavailable", e);
+        }
     }
 
     public static void closeConnection(Connection connection) {

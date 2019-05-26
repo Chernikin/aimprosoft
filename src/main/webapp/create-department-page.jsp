@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -15,11 +16,11 @@
     <table>
         <tr>
             <td>Department name</td>
-            <td><input type="text" name="departmentName"></td>
+            <td><input value="${incorrectDepartmentData.departmentName}" type="text" name="departmentName"></td>
         </tr>
         <tr>
             <td>Comments</td>
-            <td><input type="text" name="comments"></td>
+            <td><input value="${incorrectDepartmentData.comments}" type="text" name="comments"></td>
         </tr>
         <tr>
             <td>
@@ -27,6 +28,12 @@
             </td>
         </tr>
     </table>
+
+    <c:forEach var="error" items="errors">
+        <div>
+                ${error}
+        </div>
+    </c:forEach>
 </form>
 </body>
 </html>

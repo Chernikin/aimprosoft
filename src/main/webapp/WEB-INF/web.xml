@@ -7,4 +7,8 @@
         <welcome-file>manage-departments-page</welcome-file>
     </welcome-file-list>
 
+    <error-page>
+        <exception-type>com.chernikin.aimprosoft.service.exception.ServiceException</exception-type>
+        <location>/error.jsp</location>
+    </error-page>
 </web-app>
